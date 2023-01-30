@@ -1,8 +1,8 @@
-import React from "react";
-import FormMsg from "./FormMsg";
-import Message from "./Message";
-
 import { useEffect, useRef, useState } from "react";
+
+import FormMsg from "../Components/FormMsg";
+import Message from "../Components/Message";
+
 import {
   query,
   collection,
@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../services/firebase";
 
-const ChatBox = () => {
+const Chat = () => {
   const [messages, setMessages] = useState([]);
   const scroll = useRef();
 
@@ -40,9 +40,9 @@ const ChatBox = () => {
         ))}
       </div>
       <span ref={scroll}></span>
-      <FormMsg />
+      <FormMsg scroll={scroll} />
     </main>
   );
 };
 
-export default ChatBox;
+export default Chat;

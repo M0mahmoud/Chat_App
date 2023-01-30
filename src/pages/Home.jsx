@@ -1,21 +1,19 @@
 import React from "react";
-
-import { auth } from "../firebase";
-import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  const googleSignIn = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
-  };
-
   return (
-    <main className="welcome mt-5 ">
-      <h3 className="">Welcome to React Chat.</h3>
+    <main className="welcome mt-5 text-center">
+      <h3>Welcome to React Chat.</h3>
       <p>Sign in with Google to chat with with your fellow React Developers.</p>
-      <button onClick={googleSignIn} type="button" className="btn btn-info">
-        Sign In With Google
-      </button>
+      <div className="mt-5">
+        <Link className="btn btn-primary px-3 me-3" to="/signup">
+          Create New Account
+        </Link>
+        <Link className="btn btn-outline-primary px-3" to="/login">
+          Login to Your Account
+        </Link>
+      </div>
     </main>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, InputGroup, Form, Alert } from "react-bootstrap";
 
-import { auth, db } from "../firebase";
+import { auth, db } from "../services/firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const FormMsg = ({ scroll }) => {

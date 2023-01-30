@@ -1,35 +1,29 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Container, Navbar } from "react-bootstrap";
 
-import { auth } from "../firebase";
+import { auth } from "../services/firebase";
+import { logout } from "../helpers/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 
 const Header = () => {
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
 
-  const googleSignIn = () => {
-    const provider = new GoogleAuthProvider();
-
-    signInWithRedirect(auth, provider);
+  const logoutHandler = () => {
+    logout();
+    navigate("/");
   };
 
-  const signOut = () => {
-    auth.signOut();
-  };
   return (
     <Navbar bg="light" expand="md" className="border-bottom">
       <Container fluid>
-        <Navbar.Brand href="#">React Chat</Navbar.Brand>
-        {user ? (
-          <Button variant="outline-primary" onClick={signOut}>
-            Sign Out
-          </Button>
-        ) : (
-          <Button variant="outline-primary" onClick={googleSignIn}>
-            Login With Google
+        <Link to="/" className="btn btn-primary">
+          React Chat
+        </Link>
+        {user && (
+          <Button variant="outline-primary" onClick={logoutHandler}>
+            Logout
           </Button>
         )}
       </Container>
