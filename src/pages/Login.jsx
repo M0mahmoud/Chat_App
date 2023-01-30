@@ -54,7 +54,7 @@ const Signup = () => {
   };
 
   return (
-    <Container className="mt-5 w-50">
+    <Container className="mt-5 ">
       <h2>
         Login to{" "}
         <Link className="title ml-2" to="/">
@@ -96,7 +96,7 @@ const Signup = () => {
 
       <div className="mt-3">
         <Link
-          className="btn btn-outline-danger px-3 me-3"
+          className="btn btn-outline-danger px-3 me-3 mb-3"
           to="/signup"
           onClick={google}
         >
