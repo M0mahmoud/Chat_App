@@ -40,7 +40,7 @@ const ChatBox = () => {
         ))}
       </div>
       <span ref={scroll}></span>
-      <FormMsg />
+      <FormMsg scroll={scroll} />
     </main>
   );
 };

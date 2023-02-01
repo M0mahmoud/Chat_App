@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button, Container, Form } from "react-bootstrap";
 
 import { auth } from "../services/firebase";
-import { githubSignIn, googleSignIn } from "../helpers/auth";
+import { googleSignIn } from "../helpers/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
@@ -40,14 +40,7 @@ const Signup = () => {
   const google = async () => {
     try {
       googleSignIn();
-    } catch (error) {
-      setUser({ ...user, error: error.message });
-    }
-  };
-
-  const github = async () => {
-    try {
-      githubSignIn();
+      navigate("/chat");
     } catch (error) {
       setUser({ ...user, error: error.message });
     }
@@ -94,17 +87,10 @@ const Signup = () => {
         You can also log in with any of these services
       </p>
 
-      <div className="mt-3">
-        <Link
-          className="btn btn-outline-danger px-3 me-3 mb-3"
-          to="/signup"
-          onClick={google}
-        >
+      <div className="">
+        <div className="btn btn-outline-danger px-3 me-3 mt-3" onClick={google}>
           Sign in with Google
-        </Link>
-        <Link className=" px-3 btn btn-secondary" to="/login" onClick={github}>
-          Sign in with GitHub
-        </Link>
+        </div>
       </div>
       <hr />
       <p className="text-muted">

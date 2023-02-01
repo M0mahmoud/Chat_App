@@ -1,32 +1,53 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import Loading from "../Components/Loading";
 
-import Home from "../pages/Home";
-import Chat from "../pages/Chat";
-import Signup from "../pages/Signup";
-import Login from "../pages/Login";
-import App from "../App";
+const Home = lazy(() => import("../pages/Home"));
+const Chat = lazy(() => import("../pages/Chat"));
+const Signup = lazy(() => import("../pages/Signup"));
+const Login = lazy(() => import("../pages/Login"));
+const App = lazy(() => import("../App"));
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <Suspense fallback={<Loading />}>
+        <App />
+      </Suspense>
+    ),
     children: [
       {
         index: true,
-        element: <Home />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: "chat",
-        element: <Chat />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Chat />
+          </Suspense>
+        ),
       },
       {
         path: "signup",
-        element: <Signup />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Signup />
+          </Suspense>
+        ),
       },
       {
         path: "login",
-        element: <Login />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Login />
+          </Suspense>
+        ),
       },
     ],
   },
